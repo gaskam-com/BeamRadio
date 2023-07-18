@@ -1,2 +1,2 @@
 # BeamRadio
-A simple radio for BeamNG.drive where you can connect spotify and French radio.
+A simple radio for BeamNG.drive where you can connect Spotify and French radio.
