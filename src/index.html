@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeamRadio</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a href="https://accounts.spotify.com/authorize?client_id=2721f60b342a4f8cb669239a3d041d8a&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A7613%2F">Login Spotify</a>
+    <div class="audio-player">
+        <div class="timeline">
+            <div class="progress"></div>
+        </div>
+        <div class="controls">
+            <div class="play-container">
+                <div class="toggle-play play">
+                </div>
+            </div>
+            <div class="time">
+                <div class="current">0:00</div>
+                <div class="divider">/</div>
+                <div class="length"></div>
+            </div>
+            <div class="name">Music Song</div>
+            <div class="volume-container">
+                <div class="volume-button">
+                    <div class="volume icono-volumeMedium"><img src="./volume.svg" alt="volume"></div>
+                </div>
+
+                <div class="volume-slider">
+                    <div class="volume-percentage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player JS -->
+    <script src="player.js"></script>
+</body>
+
+</html>
