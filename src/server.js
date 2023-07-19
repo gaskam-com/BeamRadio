@@ -5,12 +5,6 @@ const axios = require("axios");
 const { access } = require("node:fs");
 require("dotenv").config();
 
-app.listen(7613, () => {
-    console.log("App is listening on port 7613!\n");
-});
-
-//this page contains the link to the spotify authorization page
-//contains custom url queries that pertain to my specific app
 app.get("/", (req, res) => {
     res.send(
         "<a href='https://accounts.spotify.com/authorize?client_id=" +
@@ -20,33 +14,75 @@ app.get("/", (req, res) => {
 });
 
 app.get("/connected", async (req, res) => {
+    if (req.query.code === undefined) return res.redirect("/");
+
     res.sendFile("/datas/Gaspard/Code/BeamRadio/src/index.html");
+});
 
-    const spotifyResponse = await axios.post(
-        "https://accounts.spotify.com/api/token",
-        queryString.stringify({
-            grant_type: "authorization_code",
-            code: req.query.code,
-            redirect_uri: process.env.REDIRECT_URI_DECODED,
-        }),
-        {
-            headers: {
-                Authorization: "Basic " + process.env.BASE64_AUTHORIZATION,
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-        }
-    );
+app.use("/token", async (req, res) => {
+    axios
+        .post(
+            "https://accounts.spotify.com/api/token",
+            queryString.stringify({
+                grant_type: "authorization_code",
+                code: req.query.code,
+                redirect_uri: process.env.REDIRECT_URI_DECODED,
+            }),
+            {
+                headers: {
+                    Authorization: "Basic " + process.env.BASE64_AUTHORIZATION,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            }
+        )
+        .then((spotifyResponse) => {
+            res.send(JSON.stringify({
+                refresh_token: spotifyResponse.data.refresh_token,
+                auth_token: spotifyResponse.data.auth_token
+            }));
 
-    console.log(spotifyResponse.data);
+            console.log(spotifyResponse.data);
+        })
+        .catch((err)=>{
+            console.error(err.stack);
+            console.log(req.query.code)
+            res.status(500).send("Internal Server Error");
+        });
+});
 
-    const resulte = await axios.get(
-        "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=5&offset=0",
-        {
-            headers: {
-                Authorization: "Bearer " + spotifyResponse.data.access_token,
-            },
-        }
-    );
+app.use("/refresh-token", async (req, res) => {
+    axios
+        .post(
+            "https://accounts.spotify.com/api/token",
+            queryString.stringify({
+                grant_type: "refresh_token",
+                refresh_token: req.query.refresh_token,
+                redirect_uri: process.env.REDIRECT_URI_DECODED,
+            }),
+            {
+                headers: {
+                    Authorization: "Basic " + process.env.BASE64_AUTHORIZATION,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            }
+        )
+        .then((spotifyResponse) => {
+            res.send(JSON.stringify({
+                refresh_token: spotifyResponse.data.refresh_token,
+                auth_token: spotifyResponse.data.auth_token
+            }));
 
-    console.log(resulte)
+            console.log(spotifyResponse.data);
+        })
+        .catch((err)=>{
+            console.error(err.stack);
+            console.log(req.query.refresh_token)
+            res.status(500).send("Internal Server Error");
+        });
+});
+
+app.use("/static", express.static("./"));
+
+app.listen(7613, () => {
+    console.log("App is listening on port 7613!\n");
 });
