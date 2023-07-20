@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: white;
+    background: #048b9a23;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@ html {
 }
 
 h1 {
-    color: #1F1F1F;
+    color: #1f1f1f;
     font-size: 2em;
 }
 
@@ -24,6 +24,10 @@ h1 {
     height: 500px;
     background: #1F1F1F;
     border-radius: 1em;
+
+    box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.49);
+    -webkit-box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.49);
+    -moz-box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.49);
 }
 
 .cover img {
@@ -40,6 +44,7 @@ h1 {
 }
 
 .controls {
+    margin: 1.75em 0 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,27 +52,52 @@ h1 {
 
 .time p {
     flex: 1;
-    margin: 0 1em 0 0;
+    line-height: 45.6px;
+    margin: 0 1em 0 1em;
     color: #F5F5F5;
 }
 
 .playContainer {
-    display: flexbox;
+    display: flex;
+}
+
+.previous {
+    display: flex;
+    width: 45.6px;
+    height: 45.6px;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    cursor: pointer;
+}
+
+.previous img {
+    flex: 1;
+    width: 1.5em;
+    height: 1.5em;
+
+    filter: invert(79%) sepia(0%) saturate(1290%) hue-rotate(176deg) brightness(97%) contrast(84%);
+}
+
+.previous img:hover {
+    filter: invert(100%) sepia(15%) saturate(3%) hue-rotate(246deg) brightness(113%) contrast(92%);
 }
 
 .play {
+    margin: 0 1em 0 1em;
+    padding: 0.8em;
     width: 20px;
     height: 20px;
     background: #F5F5F5;
     border-radius: 50%;
-    padding: 0.8em;
     display: flex;
     cursor: pointer;
+    float: left;
 }
 
-.play:hover {
+/* .play:hover {
     transform: scale(1.05);
-}
+} */
 
 /* .play:hover > .playButton {
     margin: 0 0 0 3.15px;
@@ -96,4 +126,52 @@ h1 {
     margin: 0;
     border-style: double;
     border-width: 0px 0 0px 20px;
+}
+
+.next {
+    display: flex;
+    width: 45.6px;
+    height: 45.6px;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    cursor: pointer;
+}
+
+.next img {
+    flex: 1;
+    width: 1.5em;
+    height: 1.5em;
+
+    filter: invert(79%) sepia(0%) saturate(1290%) hue-rotate(176deg) brightness(97%) contrast(84%);
+}
+
+.next img:hover {
+    filter: invert(100%) sepia(15%) saturate(3%) hue-rotate(246deg) brightness(113%) contrast(92%);
+}
+
+/* Create mute/unmute button with its volume bar */
+
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+
+.timeline {
+    z-index: 99;
+    margin: 1.75em 6% 0 6%;
+    width: 88%;
+    height: 0.5em;
+    background: #4d4d4d;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.progressTimeline {
+    z-index: 100;
+    width: 25%;
+    background: #F5F5F5;
+    height: 0.5em;
+    border-radius: 1em;
+}
+
+.timeline:hover > .progressTimeline {
+    background: #1fdf64;
 }
