@@ -83,6 +83,14 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             player.togglePlay();  
         };
 
+        document.getElementById("previous").onclick = function () {
+            player.previousTrack();  
+        };
+
+        document.getElementById("next").onclick = function () {
+            player.nextTrack();  
+        };
+
         player.addListener(
             "player_state_changed",
             ({ position, duration, track_window: { current_track } }) => {
