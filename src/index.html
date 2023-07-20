@@ -14,35 +14,35 @@
 
 <body>
     <h1>Connected !</h1>
-    <br>
-    <button id="test">Test</button>
-    <br>
-        <div class="audio-player">
-        <div class="timeline">
-            <div class="progress"></div>
-        </div>
-        <div class="controls">
-            <div class="play-container">
-                <button id="togglePlay" class="toggle-play play">
-                </button>
-            </div>
-            <div class="time">
-                <div class="current">0:00</div>
-                <div class="divider">/</div>
-                <div class="length"></div>
-            </div>
-            <div class="name">Music Song</div>
-            <div class="volume-container">
-                <div class="volume-button">
-                    <div class="volume icono-volumeMedium"><img src="./static/volume.svg" alt="volume"></div>
-                </div>
 
-                <div class="volume-slider">
-                    <div class="volume-percentage"></div>
-                </div>
+    <div id="audioPlayer" class="audioPlayer">
+        <div id="musicInfo" class="musicInfo">
+            <div id="cover" class="cover"><img
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.genius.com%2F878443d6907cae51db22b4901c339b6c.1000x1000x1.jpg&f=1&nofb=1&ipt=a020795568a200fa356d563abdcdb468483980a6c0a11f69e5d3f4e2eed56147&ipo=images"
+                    alt="UMLA"></div>
+            <div id="title" class="title">
+                <p>UMLA - Alpha Wann</p>
             </div>
+        </div>
+        <div id="controls" class="controls">
+            <div id="time" class="time">
+                <p>-2:03</p>
+            </div>
+            <div id="playContainer" class="playCotainer">
+                <div id="previous" class="previous"></div>
+                <div id="togglePlay" class="togglePlay play"><button class="playButton"></button></div>
+                <div id="next" class="next"></div>
+            </div>
+            <div id="mute" class="mute"></div>
+            <div id="volume" class="volume">
+                <div id="volumeBar" class="volumeBar"></div>
+            </div>
+        </div>
+        <div id="timeline" class="timeline">
+            <div id="progressTimeline" class="progressTimeline"></div>
         </div>
     </div>
 
 </body>
+
 </html>

@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
     //         process.env.CLIENT_ID +
     //         "&response_type=code&redirect_uri=http%3A%2F%2F176.151.209.242%3A7613%2Fconnected&scope=user-top-read'>Sign in</a>"
     // );
-});
+}); 
 
 app.get("/connected", async (req, res) => {
     if (req.query.code === undefined) return res.redirect("/");

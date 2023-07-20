@@ -45,8 +45,14 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             volume: 0.5,
         });
 
+        player.getVolume().then((volume) => {
+            let volume_percentage = volume * 100;
+            console.log(`The volume of the player is ${volume_percentage}%`);
+        });
+
         player.addListener("ready", ({ device_id }) => {
             console.log("Ready with Device ID", device_id);
+            player.activateElement();
         });
 
         player.addListener("not_ready", ({ device_id }) => {
@@ -74,17 +80,8 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         });
 
         document.getElementById("togglePlay").onclick = function () {
-            player.togglePlay();
+            player.togglePlay();  
         };
-
-        document.getElementById("test").addEventListener("click", () => {
-            // The player is activated. The player will keep the
-            // playing state once the state is transferred from other
-            // applications.
-            player.activateElement();
-        });
-        // Transfer your currently playing track into your
-        // application through device picker in Spotify APP.
 
         player.addListener(
             "player_state_changed",
