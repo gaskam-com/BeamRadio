@@ -1,3 +1,11 @@
+body {
+    background: #1F1F1F;
+}
+
+h1 {
+    color: #F5F5F5;
+}
+
 .audio-player {
     height: 50px;
     width: 350px;

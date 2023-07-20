@@ -7,10 +7,15 @@
     <title>BeamRadio</title>
 
     <link rel="stylesheet" href="/static/style.css">
+    <!-- Audio Player JS -->
+    <script src="https://sdk.scdn.co/spotify-player.js" async></script>
+    <script src="/static/player.js" async></script>
 </head>
 
 <body>
     <h1>Connected !</h1>
+    <br>
+    <button id="test">Test</button>
     <br>
         <div class="audio-player">
         <div class="timeline">
@@ -18,8 +23,8 @@
         </div>
         <div class="controls">
             <div class="play-container">
-                <div class="toggle-play play">
-                </div>
+                <button id="togglePlay" class="toggle-play play">
+                </button>
             </div>
             <div class="time">
                 <div class="current">0:00</div>
@@ -39,8 +44,5 @@
         </div>
     </div>
 
-    <!-- Audio Player JS -->
-    <script src="/static/player.js"></script>
 </body>
-
 </html>
