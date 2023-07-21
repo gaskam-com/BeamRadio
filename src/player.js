@@ -1,3 +1,4 @@
+import { Timer } from "https://unpkg.com/dev-timer@0.4.0/ES/Timer.js";
 let setToken;
 
 let access_token = new Promise((resolve) => (setToken = resolve));
@@ -80,15 +81,15 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         });
 
         document.getElementById("togglePlay").onclick = function () {
-            player.togglePlay();  
+            player.togglePlay();
         };
 
         document.getElementById("previous").onclick = function () {
-            player.previousTrack();  
+            player.previousTrack();
         };
 
         document.getElementById("next").onclick = function () {
-            player.nextTrack();  
+            player.nextTrack();
         };
 
         player.addListener(
@@ -97,6 +98,13 @@ window.onSpotifyWebPlaybackSDKReady = () => {
                 console.log("Currently Playing", current_track);
                 console.log("Position in Song", position);
                 console.log("Duration of Song", duration);
+
+                document.getElementById(
+                    "title"
+                ).innerHTML = `<p>${current_track.name} - ${current_track.artists[0].name}</p>`;
+
+                document.getElementById("progressTimeline").value =
+                    (position * 100) / duration;
             }
         );
 
@@ -107,5 +115,13 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         });
 
         player.connect();
+        
+        const timer = new Timer(duration - position);
+        timer.start();
+        let secondsLeft = timer.formatTime(timer.timeLeft, "mm:ss");
+        document.getElementById("time").innerHTML = `<p>-${secondsLeft}</p>`;
+    
+        timer.addEventListener(50, updateTimer);
     });
+
 };

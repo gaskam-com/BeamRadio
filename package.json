@@ -21,6 +21,7 @@
   "homepage": "https://github.com/gaskam-com/BeamRadio#readme",
   "dependencies": {
     "axios": "^1.4.0",
+    "dev-timer": "^0.4.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2"
   }

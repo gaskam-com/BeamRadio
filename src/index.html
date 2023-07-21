@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/static/style.css">
     <!-- Audio Player JS -->
     <script src="https://sdk.scdn.co/spotify-player.js" async></script>
-    <script src="/static/player.js" async></script>
+    <script type="module" src="/static/player.js" async></script>
 </head>
 
 <body>
@@ -25,9 +25,9 @@
             </div>
         </div>
         <div id="controls" class="controls">
-            <!-- <div id="time" class="time">
+            <div id="time" class="time">
                 <p>-2:03</p>
-            </div> -->
+            </div>
             <div id="playContainer" class="playCotainer">
                 <div id="previous" class="previous"><img src="/static/svg/backward-step-solid.svg" alt="previous song"></div>
                 <div id="togglePlay" class="togglePlay play"><button class="playButton"></button></div>
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div id="timeline" class="timeline">
-            <div id="progressTimeline" class="progressTimeline"></div>
+            <input type="range" min="0" max="100" value="0" id="progressTimeline" class="progressTimeline">
         </div>
     </div>
 
