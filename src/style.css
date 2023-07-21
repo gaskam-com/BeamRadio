@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -6,11 +13,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-html {
-    padding: 0;
-    margin: 0;
+    font-family: 'Source Code Pro', monospace;
 }
 
 h1 {
