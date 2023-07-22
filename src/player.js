@@ -42,7 +42,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             getOAuthToken: (cb) => {
                 cb(access_token);
             },
-            volume: 0.5,
+            volume: 1,
         });
 
         player.getVolume().then((volume) => {
@@ -79,8 +79,45 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             console.log("Resumed!");
         });
 
+        document.getElementById("volume").onclick = function () {
+            player.getVolume().then((volume) => {
+                if (volume == 1) {
+                    player.setVolume(0).then(() => {
+                        document.getElementById("volume").innerHTML =
+                            '<img src="/static/svg/volume-xmark-solid.svg" alt="mute">';
+                    });
+                } else {
+                    player.setVolume(1).then(() => {
+                        document.getElementById("volume").innerHTML =
+                            '<img src="/static/svg/volume-high-solid.svg" alt="mute">';
+                    });
+                }
+            });
+        };
+
         document.getElementById("togglePlay").onclick = function () {
-            player.togglePlay();
+            player.getCurrentState().then((state) => {
+                if (!state) {
+                    console.error(
+                        "User is not playing music through BeamRadio"
+                    );
+                    return;
+                }
+
+                let pauseState = state.paused;
+
+                if (pauseState == true) {
+                    player.togglePlay();
+                    document
+                        .getElementById("playButton")
+                        .classList.add("paused");
+                } else {
+                    player.togglePlay();
+                    document
+                        .getElementById("playButton")
+                        .classList.remove("paused");
+                }
+            });
         };
 
         document.getElementById("previous").onclick = function () {
@@ -95,19 +132,103 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             "player_state_changed",
             ({ position, duration, track_window: { current_track } }) => {
                 console.log("Currently Playing", current_track);
-                console.log("Position in Song", position);
-                console.log("Duration of Song", duration);
 
-                document.getElementById("cover").innerHTML = `<img src="${current_track.album.images[2].url}" alt="Album Cover">`
+                globalThis.trackDuration = duration;
+
+                document.getElementById(
+                    "cover"
+                ).innerHTML = `<img src="${current_track.album.images[2].url}" alt="Album Cover">`;
+
+                let musicTitle =
+                    String(current_track.name).charAt(0).toUpperCase() +
+                    String(current_track.name).slice(1);
 
                 document.getElementById(
                     "title"
-                ).innerHTML = `<p>${current_track.name} - ${current_track.artists[0].name}</p>`;
+                ).innerHTML = `<p>${musicTitle} - ${current_track.artists[0].name}</p>`;
 
-                document.getElementById("progressTimeline").value =
-                    (position * 100) / duration;
+                if (position == 0) {
+                    document.getElementById("progressTimeline").value = 0;
+                } else {
+                    return;
+                }
             }
         );
+
+        setInterval(() => {
+            player.getCurrentState().then((state) => {
+                if (!state) {
+                    console.error(
+                        "User is not playing music through BeamRadio"
+                    );
+                    return;
+                }
+
+                let currentPosition = state.position;
+
+                document.getElementById("progressTimeline").value =
+                    (currentPosition * 1000) / trackDuration;
+
+                function msToMin(msTime) {
+                    var minutes = Math.floor(msTime / 60000);
+                    var seconds = ((msTime % 60000) / 1000).toFixed(0);
+                    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                }
+
+                let symbole = "-";
+                // let timeLeft = "00:00";
+
+                // globalThis.timeMargin = document.getElementById("timeMargin");
+
+                // if (msToMin(trackDuration - currentPosition).length == 5) {
+                //     if (timeMargin.classList.lengths == 2) {
+                //         timeMargin.classList.remove("min");
+                //     } else {
+                //         return;
+                //     }
+                //     symbole = "-";
+                //     timeLeft = msToMin(trackDuration - currentPosition);
+                // } else if (
+                //     msToMin(trackDuration - currentPosition).length == 4
+                // ) {
+                //     if (timeMargin.classList.lengths == 2) {
+                //         return;
+                //     } else {
+                //         timeMargin.classList.add("min");
+                //     }
+                //     symbole = "-";
+                //     timeLeft = msToMin(trackDuration - currentPosition);
+                // } else {
+                //     if (timeMargin.classList.lengths == 2) {
+                //         return;
+                //     } else {
+                //         timeMargin.classList.add("min");
+                //     }
+                //     symbole = "+";
+                //     timeLeft = "1h40";
+                // }
+
+                document.getElementById(
+                    "time"
+                ).innerHTML = `<p class="">${symbole}${msToMin(
+                    trackDuration - currentPosition
+                )}</p>`;
+            });
+        }, 1000);
+
+        setInterval(() => {
+            player.getCurrentState().then((state) => {
+                if (state.paused == true) {
+                    document
+                        .getElementById("playButton")
+                        .classList.remove("paused");
+                } else {
+                    document
+                        .getElementById("playButton")
+                        .classList.add("paused");
+                }
+            });
+        }, 200);
 
         player.addListener("autoplay_failed", () => {
             console.log(

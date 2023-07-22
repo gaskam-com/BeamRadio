@@ -1,6 +1,6 @@
 {
   "name": "beamradio",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "BeamNG.drive radio",
   "main": "server.js",
   "scripts": {

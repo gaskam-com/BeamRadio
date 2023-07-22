@@ -25,21 +25,20 @@
             </div>
         </div>
         <div id="controls" class="controls">
-            <!-- <div id="time" class="time">
-                <p>-2:03</p>
-            </div> -->
+            <div id="time" class="time">
+                <p id="timeMargin" class="imhere">-00:00</p>
+            </div>
             <div id="playContainer" class="playCotainer">
                 <div id="previous" class="previous"><img src="/static/svg/backward-step-solid.svg" alt="previous song"></div>
-                <div id="togglePlay" class="togglePlay play"><button class="playButton"></button></div>
+                <div id="togglePlay" class="togglePlay play"><button id="playButton" class="playButton"></button></div>
                 <div id="next" class="next"><img src="/static/svg/forward-step-solid.svg" alt="next song"></div>
-            </div>
-            <div id="mute" class="mute"></div>
-            <div id="volume" class="volume">
-                <div id="volumeBar" class="volumeBar"></div>
+                <div id="volume" class="volume">
+                    <img src="/static/svg/volume-high-solid.svg">
+                </div>
             </div>
         </div>
         <div id="timeline" class="timeline">
-            <input type="range" min="0" max="100" value="0" id="progressTimeline" class="progressTimeline">
+            <input type="range" min="0" max="1000" value="0" id="progressTimeline" class="progressTimeline">
         </div>
     </div>
 

@@ -56,8 +56,12 @@ h1 {
 .time p {
     flex: 1;
     line-height: 45.6px;
-    margin: 0 1em 0 1em;
+    margin: 0;
     color: #F5F5F5;
+}
+
+.time p.min {
+    margin: 0 9.6px 0;
 }
 
 .playContainer {
@@ -71,13 +75,13 @@ h1 {
     align-items: center;
     justify-content: center;
     float: left;
-    cursor: pointer;
 }
 
 .previous img {
     flex: 1;
     width: 1.5em;
     height: 1.5em;
+    cursor: pointer;
 
     filter: invert(79%) sepia(0%) saturate(1290%) hue-rotate(176deg) brightness(97%) contrast(84%);
 }
@@ -118,7 +122,7 @@ h1 {
     width: 0;
     height: 20px;
     border-color: transparent transparent transparent #1f1f1f;
-    transition: 100ms all ease;
+    transition: .1s all ease;
     cursor: pointer;
     border-style: solid;
     border-width: 10px 0 10px 17.3px;
@@ -137,14 +141,14 @@ h1 {
     height: 45.6px;
     align-items: center;
     justify-content: center;
-    float: right;
-    cursor: pointer;
+    float: left;
 }
 
 .next img {
     flex: 1;
     width: 1.5em;
     height: 1.5em;
+    cursor: pointer;
 
     filter: invert(79%) sepia(0%) saturate(1290%) hue-rotate(176deg) brightness(97%) contrast(84%);
 }
@@ -153,9 +157,29 @@ h1 {
     filter: invert(100%) sepia(15%) saturate(3%) hue-rotate(246deg) brightness(113%) contrast(92%);
 }
 
-/* Create mute/unmute button with its volume bar */
+.volume {
+    flex: 1;
+    display: flex;
+    width: 45.6px;
+    height: 45.6px;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    margin: 0 0 0 0.8125em;
+}
 
-/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+.volume img {
+    flex: 1;
+    width: 1.3em;
+    height: 1.3em;
+    cursor: pointer;
+    
+    filter: invert(79%) sepia(0%) saturate(1290%) hue-rotate(176deg) brightness(97%) contrast(84%);
+}
+
+.volume img:hover {
+    filter: invert(100%) sepia(15%) saturate(3%) hue-rotate(246deg) brightness(113%) contrast(92%);
+}
 
 .timeline {
     z-index: 99;
