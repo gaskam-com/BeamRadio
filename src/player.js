@@ -158,17 +158,15 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             player.nextTrack();
         };
 
-        document.getElementById("toggleMode").onclick = function () {
-            if (document.getElementById("toggleMode").classList == "toggleMode radio") {
-                document.getElementById("toggleMode").classList.remove("radio");
-                document.getElementById("toggleMode").classList.add("spotify")
-                document.getElementById("toggleMode").innerHTML =
-                "<img src='/static/svg/spotify.svg' alt='spotify'>";
+        document.getElementById("fold").onclick = function () {
+            if (document.getElementById("fold").classList == "fold hide") {
+                document.getElementById("fold").classList.remove("hide");
+                document.getElementById("coverImg").classList.add("hidden");
+                document.getElementById("audioPlayer").classList.add("noCover");
             } else {
-                document.getElementById("toggleMode").classList.remove("spotify");
-                document.getElementById("toggleMode").classList.add("radio")
-                document.getElementById("toggleMode").innerHTML =
-                "<img src='/static/svg/radio-solid.svg' alt='radio'>";
+                document.getElementById("fold").classList.add("hide")
+                document.getElementById("coverImg").classList.remove("hidden");
+                document.getElementById("audioPlayer").classList.remove("noCover");
             }
         };
 
@@ -191,7 +189,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
                 document.getElementById(
                     "cover"
-                ).innerHTML = `<img src="${current_track.album.images[2].url}" alt="Album Cover">`;
+                ).innerHTML = `<img  id="coverImg" class="coverImg" src="${current_track.album.images[2].url}" alt="Album Cover">`;
 
                 let musicTitle =
                     String(current_track.name).charAt(0).toUpperCase() +
