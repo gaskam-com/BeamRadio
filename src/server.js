@@ -23,12 +23,12 @@ app.get("/", (req, res) => {
     let requestParameters = new URLSearchParams({
         response_type: "code",
         client_id: process.env.CLIENT_ID,
-        redirect_uri: "http://localhost:7613/connected",
+        redirect_uri: "http://beamradio.gaskam.com/connected",
         scope: scope,
         state: state
     });
 
-    res.send(`<a href=https://accounts.spotify.com/authorize/?${requestParameters.toString()}>Sign in</a>`)
+    res.send(`<a href=https://accounts.spotify.com/authorize/?${requestParameters.toString()} target="_blank">Sign in</a>`)
 
     // res.send(
     //     "<a href='https://accounts.spotify.com/authorize?client_id=" +
@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 app.get("/connected", async (req, res) => {
     if (req.query.code === undefined) return res.redirect("/");
 
-    res.sendFile("/datas/Gaspard/Code/BeamRadio/src/index.html");
+    res.sendFile("/home/patafix/datas/Gaspard/Code/BeamRadio/src/index.html");
 });
 
 app.use("/token", async (req, res) => {
