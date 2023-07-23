@@ -57,3 +57,12 @@ This project was created by Patafix. But I would like to thank Bot-Maker who hel
 
 Dev Timer's code is licenced under [BSD-3 Clause Licence](https://opensource.org/license/bsd-3-clause/).
 You can find the licence file [here](https://github.com/gaskam-com/BeamRadio/blob/main/LICENSE) too.
+
+## ToDo
+
+[ ] Hover effect on play button
+[ ] Align time whith its lenght
+[ ] Animation when i hide the cover
+[ ] Interactive bar
+[ ] Animate Bar
+[ ] Hide tokens for server
