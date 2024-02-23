@@ -1,10 +1,22 @@
 {
-    "name" : "BeamRadio",
-    "author": "Gaskam",
-    "version": "0.0.1",
-    "description": "Radio in BeamNG.drive",
-    "directive": "BeamRadio",
-    "domElement": "<beamRadio></beamRadio>",
-    "css": { "width": "150px", "height": "150px", "top": "200px", "left": "200px" },
-    "preserveAspectRatio": true
-  }
+  "domElement": "<beamradio></beamradio>",
+  "name": "beamradio",
+
+  "types": [
+    "ui.apps.categories.vehicle_control"
+  ],
+
+  "css": {
+    "left": "200px",
+    "bottom": "0px",
+    "width": "640px",
+    "height": "220px",
+    "min-width": "440px",
+    "min-height": "120px"
+  },
+
+  "description": "A simple radio for BeamNG.drive",
+  "author": "Gaskam",
+  "version": "0.0.1",
+  "directive": "beamradio"
+}

@@ -1,28 +1,19 @@
 {
   "name": "beamradio",
-  "version": "0.0.5",
-  "description": "BeamNG.drive radio",
-  "main": "server.js",
+  "module": "index.ts",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "bun ./src/app.ts",
+    "build": "bun build ./src/app.ts --outdir ./dist/ --minify && cp ./src/app.html ./dist/app.html && cp ./src/app.css ./dist/app.css && cp ./src/app.json ./dist/app.json"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gaskam-com/BeamRadio.git"
+  "devDependencies": {
+    "@types/bun": "latest"
   },
-  "keywords": [
-    "BeamNG"
-  ],
-  "author": "Gaskam",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gaskam-com/BeamRadio/issues"
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   },
-  "homepage": "https://github.com/gaskam-com/BeamRadio#readme",
   "dependencies": {
-    "axios": "^1.4.0",
-    "dev-timer": "^0.4.0",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "@types/angular": "^1.8.9",
+    "angular": "^1.8.3"
   }
 }
